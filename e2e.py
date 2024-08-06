@@ -16,7 +16,7 @@ def test_scores_service():
     driver_chrome = webdriver.Chrome(service=service, options=chrome_options)
 
     try:
-        driver_chrome.get("http://127.0.0.1:8777/")
+        driver_chrome.get("http://127.0.0.1:5000/")
         # Use WebDriverWait to wait for the element to be present
         score = WebDriverWait(driver_chrome, 10).until(
             EC.presence_of_element_located((By.ID, "score"))
