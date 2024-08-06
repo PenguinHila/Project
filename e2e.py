@@ -1,31 +1,25 @@
 import sys
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import ChromiumOptions
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
 
 def test_scores_service():
-    chrome_options = Options()
-    
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    chrome_options = ChromiumOptions()
 
-    try:
-        driver.get("http://127.0.0.1:5000/")
-        score_element = driver.find_element(By.ID, "score")
-        score_value = int(score_element.text)
+    service = Service(ChromeDriverManager().install(), options=chrome_options)
+    driver_chrome = webdriver.Chrome(service=service)
 
-        if 0 <= score_value <= 1000:
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    driver_chrome.get("http://127.0.0.1:8777/")
+    score = driver_chrome.find_element(By.ID, "score")
+    if 0 <= int(score.text) <= 1000:
+        driver_chrome.quit()
+        return True
+    else:
+        driver_chrome.quit()
         return False
-    finally:
-        driver.quit()
 
 
 def main_function():
@@ -35,5 +29,6 @@ def main_function():
         sys.exit(-1)
 
 
-if __name__ == "__main__":
-    main_function()
+
+
+main_function()
