@@ -1,12 +1,8 @@
 version: '3.8'
 
-
 services:
   flask-app:
-    image: main_score:01
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: main_score:${IMAGE_TAG}
     ports:
       - "8777:5000"
     volumes:
