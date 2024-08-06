@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   flask-app:
-    image: main_score:${IMAGE_TAG}
+    image: main_score
     ports:
       - "8777:5000"
     volumes:
