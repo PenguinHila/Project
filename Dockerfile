@@ -5,4 +5,5 @@ RUN git clone https://github.com/PenguinHila/Project.git .
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 EXPOSE 8777
+EXPOSE 5000
 CMD python main_score.py
