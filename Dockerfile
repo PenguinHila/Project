@@ -1,5 +1,4 @@
 FROM python:alpine
-WORKDIR /app
 RUN apk add --no-cache git
 COPY main_score.py .
 COPY requirements.txt .
