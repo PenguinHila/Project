@@ -1,6 +1,11 @@
 from flask import Flask
-from utils import utils
 import os
+
+# A string representing a file name.
+SCORES_FILE_NAME = "score.txt"
+
+# A number representing a bad return code for a function.
+BAD_RETURN_CODE = 666
 
 app = Flask(__name__)
 
