@@ -14,28 +14,29 @@ def score_server():
     BAD_RETURN_CODE = 666
     
     try:
-        if os.path.exists("scores.txt"):
-            with open("scores.txt", 'r') as file:
-                SCORE = int(file.readline())
-                return f"""<html>
-                                <head>
-                                    <title>Score game</title>
-                                </head>
-                                <body>
-                                    <h1>The score is:</h1>
-                                    <div id="score">{SCORE}</div>
-                                </body>
-                                </html>"""
-        else:
+        
+        #if os.path.exists("scores.txt"):
+        with open("scores.txt", 'r') as file:
+            SCORE = int(file.readline())
             return f"""<html>
                             <head>
                                 <title>Score game</title>
                             </head>
                             <body>
-                                <h1>ERROR</h1>
-                                <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
+                                <h1>The score is:</h1>
+                                <div id="score">{SCORE}</div>
                             </body>
                             </html>"""
+    # else:
+    #     return f"""<html>
+    #                     <head>
+    #                             <title>Score game</title>
+    #                         </head>
+    #                         <body>
+    #                             <h1>ERROR</h1>
+    #                             <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
+    #                         </body>
+    #                         </html>"""
     except (FileNotFoundError, ValueError):
         return f"""<html>
                                     <head>
