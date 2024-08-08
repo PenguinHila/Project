@@ -3,12 +3,12 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
+def score_server():
     try:
         with open("score.txt", 'r') as file:
             score = file.read()
     except Exception:
-        score = "Error: 404"
+        score = "Error: 666"
     return (f"""
     <html>
         <head>
