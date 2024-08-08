@@ -1,19 +1,21 @@
 from flask import Flask
 import os
 
-# A string representing a file name.
-SCORES_FILE_NAME = "score.txt"
 
-# A number representing a bad return code for a function.
-BAD_RETURN_CODE = 666
 
 app = Flask(__name__)
 
 @app.route("/")
 def score_server():
+# A string representing a file name.
+SCORES_FILE_NAME = "score.txt"
+
+# A number representing a bad return code for a function.
+BAD_RETURN_CODE = 666
+    
     try:
-        if os.path.exists(utils.SCORES_FILE_NAME):
-            with open(utils.SCORES_FILE_NAME, 'r') as file:
+        if os.path.exists(SCORES_FILE_NAME):
+            with open(SCORES_FILE_NAME, 'r') as file:
                 SCORE = int(file.readline())
                 return f"""<html>
                                 <head>
@@ -31,7 +33,7 @@ def score_server():
                             </head>
                             <body>
                                 <h1>ERROR</h1>
-                                <div id="score" style="color:red">{utils.BAD_RETURN_CODE}</div>
+                                <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
                             </body>
                             </html>"""
     except (FileNotFoundError, ValueError):
@@ -41,7 +43,7 @@ def score_server():
                                     </head>
                                     <body>
                                         <h1>ERROR</h1>
-                                        <div id="score" style="color:red">{utils.BAD_RETURN_CODE}</div>
+                                        <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
                                     </body>
                                     </html>"""
 
