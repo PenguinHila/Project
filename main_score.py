@@ -1,55 +1,25 @@
 from flask import Flask
-import os
-
-
 
 app = Flask(__name__)
 
 @app.route("/")
 def score_server():
-    # A string representing a file name.
-   # SCORES_FILE_NAME = "score.txt"
-
-    # A number representing a bad return code for a function.
-    BAD_RETURN_CODE = 666
-    
     try:
-        
-        #if os.path.exists("scores.txt"):
         with open("scores.txt", 'r') as file:
-            SCORE = int(file.readline())
-            return f"""<html>
-                            <head>
-                                <title>Score game</title>
-                            </head>
-                            <body>
-                                <h1>The score is:</h1>
-                                <div id="score">{SCORE}</div>
-                            </body>
-                            </html>"""
-    # else:
-    #     return f"""<html>
-    #                     <head>
-    #                             <title>Score game</title>
-    #                         </head>
-    #                         <body>
-    #                             <h1>ERROR</h1>
-    #                             <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
-    #                         </body>
-    #                         </html>"""
-    except (FileNotFoundError, ValueError):
-        return f"""<html>
-                                    <head>
-                                        <title>Score game</title>
-                                    </head>
-                                    <body>
-                                        <h1>ERROR</h1>
-                                        <div id="score" style="color:red">{BAD_RETURN_CODE}</div>
-                                    </body>
-                                    </html>"""
+            score = file.read()
+    except Exception:
+        score = "Error: 666"
+    return (f"""
+    <html>
+        <head>
+            <title>Score Game</title>
+        </head>
+        <body>
+            <h1>The score is:</h1>
+            <div id="score"> {score} </div>
+        </body>
+    </html>
+    """)
 
-
-#if __name__ == '__main__':
-app.run(host='0.0.0.0', port=5000, debug=True)
-
-
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
