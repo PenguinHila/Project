@@ -1,8 +1,6 @@
 FROM python:alpine
-RUN apk add --no-cache git
-COPY main_score.py .
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-EXPOSE 5000
+COPY main_score.py .
 EXPOSE 8777
 CMD python main_score.py
